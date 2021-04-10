@@ -1,22 +1,67 @@
 import * as React from 'react';
-import { createStackNavigator } from '@react-navigation/stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { GameListScreen } from '../screens/GameListScreen';
 import { GameDetailScreen } from '../screens/GameDetailScreen';
+import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+import { Platform, Text } from 'react-native';
+import { GamePCScreen } from '../screens/GamePCScreen';
+import { GameWebScreen } from '../screens/GameWebScreen';
+import Icon from 'react-native-vector-icons/Ionicons';
 
-const Stack = createStackNavigator();
 
-export const Navigator = () => {
-  return (
-    <Stack.Navigator
-        screenOptions={{
-            headerShown: false,
-            cardStyle: {
-                backgroundColor: 'white'
+
+export const Tabs = () => {
+    return Platform.OS === 'ios'
+    ? <TabIOS />
+    : <TabAndroid />
+}
+
+const BottomTabAndroid = createMaterialBottomTabNavigator();
+const BottomTabIOs = createBottomTabNavigator();
+
+const TabAndroid = () => {
+    return (
+        <BottomTabAndroid.Navigator
+            sceneAnimationEnabled={true}
+            barStyle={{ backgroundColor: '#4ea4e2' }}
+            screenOption={
+                ({route}) => ({
+                    tabBarIcon: ({color, focused}) => {
+                        let iconName: string = '';
+                        switch (route.name) {
+                            case 'GameListScreen':
+                                return  <Icon name='logo-windows' size={25} color="#900"/>
+                                break;
+                            case 'GamePCScreen':
+                                return  <Icon name='logo-windows' size={25} color="#900"/>
+                                break;
+                            case 'GameWebScreen':
+                                return  <Icon name='logo-windows' size={25} color="#900"/>
+                                break;
+                                            
+                            
+                        }
+                        return <Text style={{color}}>{iconName}</Text>
+                    }
+                })
             }
-        }}
-    >
-      <Stack.Screen name="GameListScreen" component={GameListScreen} />
-      <Stack.Screen name="GameDetailScreen" component={GameDetailScreen} />
-    </Stack.Navigator>
-  );
+        >    
+          <BottomTabAndroid.Screen name="GameListScreen" options={{ title: 'All'}} component={GameListScreen}  />
+          <BottomTabAndroid.Screen name="GamePCScreen" options={{ title: 'PC'}} component={GamePCScreen} />
+          <BottomTabAndroid.Screen name="GameWebScreen" options={{ title: 'Web'}} component={GameWebScreen} />           
+        </BottomTabAndroid.Navigator>
+      );
+}
+
+
+const TabIOS = () => {
+    return (
+        <BottomTabIOs.Navigator
+            initialRouteName='GameListScreen'
+
+        >
+          <BottomTabIOs.Screen name="GameListScreen" component={GameListScreen} />
+          <BottomTabIOs.Screen name="GameDetailScreen" component={GameDetailScreen} />
+        </BottomTabIOs.Navigator>
+      );
 }
