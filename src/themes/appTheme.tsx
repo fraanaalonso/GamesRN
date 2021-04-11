@@ -28,5 +28,14 @@ export const styles = StyleSheet.create({
         fontWeight: 'bold',
 
 
+    },
+    itemBtn: {
+        flexDirection: 'row',
+        marginVertical: 10,
+        marginHorizontal: 20,
+    },
+    bottomText:{
+        fontWeight: 'bold',
+        fontSize: 20
     }
 });

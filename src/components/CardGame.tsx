@@ -18,7 +18,6 @@ export const CardGame = ({game, heigth=420, width=300}: Props) => {
     return (
         <TouchableOpacity
             activeOpacity={0.6}
-            onPress={ () => navigation.navigate('GameDetailScreen')}
         >
             <View>
                 <Image 

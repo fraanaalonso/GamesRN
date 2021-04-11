@@ -8,8 +8,14 @@ import Carousel from 'react-native-snap-carousel';
 import { useGames } from '../hooks/useGames';
 
 
-const { width: windowWidth } = Dimensions.get('window')
-export const GameListScreen = () => {
+interface Props {
+    category?: string
+}
+
+const { width: windowWidth } = Dimensions.get('window');
+
+
+export const GameListScreen = ({ category }: Props) => {
 
     const { games, isLoading } = useGames();
     const {top} = useSafeAreaInsets();
