@@ -21,5 +21,12 @@ export const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
 
+    },
+    textTitleGame:{
+        fontSize: 16,
+        textAlign: 'center',
+        fontWeight: 'bold',
+
+
     }
 });

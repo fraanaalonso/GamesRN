@@ -1,6 +1,6 @@
 import React from 'react'
 import { TouchableOpacity } from 'react-native-gesture-handler'
-import { View, Image } from 'react-native';
+import { View, Image, Text } from 'react-native';
 import { styles } from '../themes/appTheme';
 import { GameListInterface } from '../interfaces/interfaces';
 import { useNavigation } from '@react-navigation/core';
@@ -27,6 +27,7 @@ export const CardGame = ({game, heigth=420, width=300}: Props) => {
                     }}
                     style={{...styles.cardGame, height: heigth, width: width}}
                 />
+                <Text style={styles.textTitleGame}>{ game.title}</Text>
             </View>
         </TouchableOpacity>
     )
